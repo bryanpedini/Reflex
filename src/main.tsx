@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import '@fontsource-variable/inter'
+import '@fontsource-variable/noto-sans-sc'
+import '@fontsource-variable/roboto-mono'
 import App from './App'
 import './index.css'
 

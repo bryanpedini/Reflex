@@ -658,6 +658,7 @@ export function AIChatPanel({
                     chatMsgs.push({
                         role: 'assistant',
                         content: m.content || null,
+                        reasoning_content: m.reasoning || null,
                         tool_calls: [{
                             id: m.id,
                             type: 'function',
@@ -668,7 +669,11 @@ export function AIChatPanel({
                         }]
                     });
                 } else {
-                    chatMsgs.push({ role: 'assistant', content: m.content });
+                    chatMsgs.push({
+                        role: 'assistant',
+                        content: m.content,
+                        reasoning_content: m.reasoning || null,
+                    });
                 }
             } else if (m.role === 'tool') {
                 chatMsgs.push({

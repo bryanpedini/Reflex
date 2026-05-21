@@ -27,6 +27,14 @@ export interface AgentSessionMessage {
   role: 'user' | 'assistant' | 'tool';
   content: string;
   timestamp: number;
+  reasoning?: string;
+  isError?: boolean;
+  usage?: {
+    promptTokens: number;
+    completionTokens: number;
+    totalTokens: number;
+  };
+  modelUsed?: string;
   toolCall?: {
     name: string;
     command: string;

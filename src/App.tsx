@@ -72,7 +72,7 @@ function App() {
   }, []);
 
   const initTheme = useThemeStore(state => state.initTheme);
-  const { initSettings, uiFontFamily } = useSettingsStore();
+  const { initSettings, uiFontFamily, terminalFontFamily, language } = useSettingsStore();
   // guard: prevent double auto-connect on HMR hot reloads
   const autoConnectedRef = useRef(false);
 
@@ -82,8 +82,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.setProperty('--font-ui', uiFontFamily);
-  }, [uiFontFamily]);
+    document.documentElement.style.setProperty('--font-sans', uiFontFamily);
+    document.documentElement.lang = language;
+  }, [language, uiFontFamily]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--font-mono', terminalFontFamily);
+  }, [language, terminalFontFamily]);
 
   const handleConnect = async (connection: SSHConnection) => {
     const uniqueId = Date.now().toString();

@@ -28,6 +28,10 @@ import { cn } from '../lib/utils';
 import { useSettingsStore } from '../store/settingsStore';
 import { useThemeStore } from '../store/themeStore';
 import { AI_PROVIDER_CONFIGS, AIProvider, AIProviderProfile } from '../shared/aiTypes';
+import {
+  HOPPSCOTCH_MONO_FONT_STACK,
+  HOPPSCOTCH_UI_FONT_STACK,
+} from '../shared/fontStacks';
 import { Language } from '../shared/locales';
 import { accentColors, baseThemes, BaseThemeId, terminalThemes, TerminalThemeId } from '../shared/themes';
 import logoUrl from '../assets/logo.png';
@@ -204,24 +208,17 @@ export function Settings({ onBack }: SettingsProps) {
   };
 
   const uiFontOptions = [
-    { label: isZh ? '系统默认' : 'System Default', value: 'system-ui, -apple-system, sans-serif' },
-    { label: 'Inter', value: 'Inter, sans-serif' },
-    { label: 'Roboto', value: 'Roboto, sans-serif' },
-    { label: 'Segoe UI', value: '"Segoe UI", sans-serif' },
-    { label: 'Helvetica Neue', value: '"Helvetica Neue", Arial, sans-serif' },
+    {
+      label: isZh ? 'Inter Variable（Hoppscotch）' : 'Inter Variable (Hoppscotch)',
+      value: HOPPSCOTCH_UI_FONT_STACK,
+    },
   ];
 
   const terminalFontOptions = [
-    { label: 'Inter', value: "'Inter', monospace" },
-    { label: isZh ? '等宽字体（默认）' : 'Monospace (Default)', value: 'monospace' },
-    { label: 'Consolas', value: "'Consolas', monospace" },
-    { label: 'Fira Code', value: "'Fira Code', monospace" },
-    { label: 'JetBrains Mono', value: "'JetBrains Mono', monospace" },
-    { label: 'Source Code Pro', value: "'Source Code Pro', monospace" },
-    { label: 'Roboto Mono', value: "'Roboto Mono', monospace" },
-    { label: 'Ubuntu Mono', value: "'Ubuntu Mono', monospace" },
-    { label: 'Courier New', value: "'Courier New', monospace" },
-    { label: 'Pixel (VT323)', value: '"VT323", monospace' },
+    {
+      label: isZh ? 'Roboto Mono Variable（Hoppscotch）' : 'Roboto Mono Variable (Hoppscotch)',
+      value: HOPPSCOTCH_MONO_FONT_STACK,
+    },
   ];
 
   const curatedThemes: Array<{ id: BaseThemeId; label: string; description: string }> = [

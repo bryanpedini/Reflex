@@ -3,6 +3,7 @@ import Editor from '@monaco-editor/react';
 import { X, Save, Loader2, FileCode, Maximize2, Minimize2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { useThemeStore } from '../store/themeStore';
+import { HOPPSCOTCH_MONO_FONT_STACK } from '../shared/fontStacks';
 
 interface FileEditorProps {
     fileName: string;
@@ -187,7 +188,7 @@ export function FileEditor({ fileName, filePath, initialContent, onSave, onClose
                         options={{
                             minimap: { enabled: false },
                             fontSize: 13,
-                            fontFamily: '"Fira Code", "Cascadia Code", monospace',
+                            fontFamily: HOPPSCOTCH_MONO_FONT_STACK,
                             scrollBeyondLastLine: false,
                             automaticLayout: true,
                             padding: { top: 12 },

@@ -96,7 +96,11 @@ export class AgentForkedAgentService {
 
       if (response.content?.trim()) {
         lastAssistantText = response.content.trim();
-        history.push({ role: 'assistant', content: lastAssistantText });
+        history.push({
+          role: 'assistant',
+          content: lastAssistantText,
+          reasoning_content: response.reasoningContent || undefined,
+        });
       }
 
       if (!response.toolCalls?.length) {
