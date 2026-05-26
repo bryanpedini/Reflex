@@ -123,7 +123,7 @@ export function ConnectionManager({ onConnect, onNavigate, activeSessions = 0 }:
             </div>
             <h3 className="text-sm font-semibold mb-1.5">{t('connection.noConnections')}</h3>
             <p className="text-xs text-muted-foreground/60 max-w-sm mb-5 leading-relaxed">
-              {t('connection.addFirstConnection')}
+              {t('connection.noConnectionsDesc')}
             </p>
             <Button
               onClick={() => { setEditingConnection({}); setIsModalOpen(true); }}
