@@ -55,7 +55,7 @@ export function ConnectionForm({ initialData, onSave, onCancel }: ConnectionForm
                 <Input
                     value={formData.name}
                     onChange={e => set({ name: e.target.value })}
-                    placeholder={formData.host ? `${formData.username || 'root'}@${formData.host}` : { t('connection.form.nameDesc') }}
+                    placeholder={formData.host ? `${formData.username || 'root'}@${formData.host}` : t('connection.form.nameDesc')}
                 />
             </div>
 
