@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { SSHConnection } from '../shared/types';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
+import { useTranslation } from '../hooks/useTranslation';
 import { Key, Lock, Server, GitMerge, ChevronDown, FolderOpen, Eye, EyeOff } from 'lucide-react';
 
 interface ConnectionFormProps {
@@ -11,6 +12,7 @@ interface ConnectionFormProps {
 }
 
 export function ConnectionForm({ initialData, onSave, onCancel }: ConnectionFormProps) {
+    const { t } = useTranslation();
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState<Partial<SSHConnection>>({
         name: '',
@@ -39,7 +41,7 @@ export function ConnectionForm({ initialData, onSave, onCancel }: ConnectionForm
     };
 
     const pickFile = async (field: 'privateKeyPath' | 'jumpPrivateKeyPath') => {
-        const path = await (window as any).electron.openFileDialog({ title: '选择 SSH 私钥' });
+        const path = await (window as any).electron.openFileDialog({ title: t('connection.form.selectPrivateKey') });
         if (path) set({ [field]: path });
     };
 
@@ -129,7 +131,7 @@ export function ConnectionForm({ initialData, onSave, onCancel }: ConnectionForm
                             type="button"
                             onClick={() => setShowPassword(v => !v)}
                             className="px-2 py-1 rounded-md bg-secondary hover:bg-secondary/80 text-muted-foreground hover:text-foreground transition-colors border border-border"
-                            title={showPassword ? '隐藏密码' : '显示密码'}
+                            title={showPassword ? t('connection.form.showPassword') : t('connection.form.hidePassword')}
                         >
                             {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
@@ -143,14 +145,14 @@ export function ConnectionForm({ initialData, onSave, onCancel }: ConnectionForm
                             <Input
                                 value={formData.privateKeyPath}
                                 onChange={e => set({ privateKeyPath: e.target.value })}
-                                placeholder="~/.ssh/id_rsa {t('connection.form.or')} /path/to/key.pem"
+                                placeholder={`~/.ssh/id_rsa ${t('connection.form.or')} /path/to/key.pem`}
                                 className="flex-1"
                             />
                             <button
                                 type="button"
                                 onClick={() => pickFile('privateKeyPath')}
                                 className="px-2 py-1 rounded-md bg-secondary hover:bg-secondary/80 text-muted-foreground hover:text-foreground transition-colors border border-border"
-                                title="浏览文件"
+                                title={t('connection.form.browse')}
                             >
                                 <FolderOpen className="w-4 h-4" />
                             </button>
@@ -162,7 +164,7 @@ export function ConnectionForm({ initialData, onSave, onCancel }: ConnectionForm
                             type="password"
                             value={formData.passphrase}
                             onChange={e => set({ passphrase: e.target.value })}
-                            placeholder="{t('connection.form.passphraseDesc')}"
+                            placeholder={t('connection.form.passphraseDesc')}
                         />
                     </div>
                 </div>
@@ -232,11 +234,11 @@ export function ConnectionForm({ initialData, onSave, onCancel }: ConnectionForm
                                 type="password"
                                 value={formData.jumpPassword}
                                 onChange={e => set({ jumpPassword: e.target.value })}
-                                placeholder="{t('connection.form.JumpPrivKeyDesc')}"
+                                placeholder={t('connection.form.jumpPrivKeyDesc')}
                             />
                         </div>
                         <div className={groupCls}>
-                            <label className={labelCls}>{t('connection.form.jumpPrivKeyPaht')}</label>
+                            <label className={labelCls}>{t('connection.form.jumpPrivKeyPath')}</label>
                             <div className="flex gap-1.5">
                                 <Input
                                     value={formData.jumpPrivateKeyPath}
@@ -248,7 +250,7 @@ export function ConnectionForm({ initialData, onSave, onCancel }: ConnectionForm
                                     type="button"
                                     onClick={() => pickFile('jumpPrivateKeyPath')}
                                     className="px-2 py-1 rounded-md bg-secondary hover:bg-secondary/80 text-muted-foreground hover:text-foreground transition-colors border border-border"
-                                    title="{t('connection.form.browse')}"
+                                    title={t('connection.form.browse')}
                                 >
                                     <FolderOpen className="w-4 h-4" />
                                 </button>

@@ -89,6 +89,9 @@ export const translations = {
             username: 'Username',
             password: 'Password',
             name: 'Name',
+            close: 'Close connection',
+            manager: 'Connection manager',
+            terminal: 'Terminal',
             noConnections: 'No connections found. Create one to get started.',
             noConnectionsDesc: 'Add your first SSH server and start remote management.',
             form: {
@@ -104,6 +107,9 @@ export const translations = {
                 or: 'or',
                 passphrase: 'Private key passphrase (optional)',
                 passphraseDesc: 'If the key has a password, please fill it in.',
+                showPassword: 'Show password',
+                hidePassword: 'Hide password',
+                selectPrivateKey: 'Select SSH private key',
                 tags: 'Tags (comma-separated)',
                 tagsDesc: 'Used to display environment/region tags on the homepage card.',
                 bastion: 'Bastion Host',
@@ -263,6 +269,9 @@ export const translations = {
             username: 'Nome utente',
             password: 'Password',
             name: 'Nome',
+            close: 'Chiudi connessione',
+            manager: 'Gestione connessioni',
+            terminal: 'Terminale',
             noConnections: 'Nessuna connessione trovata. Creane una per iniziare.',
             noConnectionsDesc: 'Aggiungi il tuo primo server SSH e inizia la gestione remota.',
             form: {
@@ -278,6 +287,9 @@ export const translations = {
                 or: 'oppure',
                 passphrase: 'Passphrase della chiave privata (opzionale)',
                 passphraseDesc: 'Se la chiave ha una password, compilala.',
+                showPassword: 'Mostra password',
+                hidePassword: 'Nascondi password',
+                selectPrivateKey: 'Seleziona chiave privata SSH',
                 tags: 'Tag (separati da virgola)',
                 tagsDesc: 'Usati per mostrare i tag ambiente/regione nella scheda della homepage.',
                 bastion: 'Host bastion',
@@ -437,6 +449,9 @@ export const translations = {
             username: '用户名',
             password: '密码',
             name: '名称',
+            close: '关闭连接',
+            manager: '连接管理',
+            terminal: '终端',
             noConnections: '未找到连接。创建一个以开始。',
             noConnectionsDesc: '添加你的第一个 SSH 服务器，开始远程管理。',
             form: {
@@ -452,6 +467,9 @@ export const translations = {
                 or: '或',
                 passphrase: '私钥口令（可选）',
                 passphraseDesc: '如果密钥有密码，请填写。',
+                showPassword: '显示密码',
+                hidePassword: '隐藏密码',
+                selectPrivateKey: '选择 SSH 私钥',
                 tags: '标签（逗号分隔）',
                 tagsDesc: '用于在首页卡片上显示环境/区域标签。',
                 bastion: '堡垒机',
@@ -611,6 +629,9 @@ export const translations = {
             username: 'ユーザー名',
             password: 'パスワード',
             name: '名前',
+            close: '接続を閉じる',
+            manager: '接続管理',
+            terminal: 'ターミナル',
             noConnections: '接続が見つかりません。新しい接続を作成してください。',
             noConnectionsDesc: '最初のSSHサーバーを追加して、リモート管理を開始しましょう。',
             form: {
@@ -626,6 +647,9 @@ export const translations = {
                 or: 'または',
                 passphrase: '秘密鍵のパスフレーズ（任意）',
                 passphraseDesc: '鍵にパスワードがある場合は入力してください。',
+                showPassword: 'パスワードを表示',
+                hidePassword: 'パスワードを隠す',
+                selectPrivateKey: 'SSH秘密鍵を選択',
                 tags: 'タグ（カンマ区切り）',
                 tagsDesc: 'ホーム画面カードに環境/リージョンタグを表示するために使用します。',
                 bastion: '踏み台ホスト',
@@ -785,6 +809,9 @@ export const translations = {
             username: '사용자 이름',
             password: '비밀번호',
             name: '이름',
+            close: '연결 닫기',
+            manager: '연결 관리',
+            terminal: '터미널',
             noConnections: '연결을 찾을 수 없습니다. 시작하려면 연결을 생성하세요.',
             noConnectionsDesc: '첫 번째 SSH 서버를 추가하고 원격 관리를 시작하세요.',
             form: {
@@ -800,6 +827,9 @@ export const translations = {
                 or: '또는',
                 passphrase: '개인 키 암호문(선택 사항)',
                 passphraseDesc: '키에 비밀번호가 있으면 입력하세요.',
+                showPassword: '비밀번호 표시',
+                hidePassword: '비밀번호 숨기기',
+                selectPrivateKey: 'SSH 개인 키 선택',
                 tags: '태그(쉼표로 구분)',
                 tagsDesc: '홈페이지 카드에 환경/리전 태그를 표시하는 데 사용됩니다.',
                 bastion: '배스천 호스트',
@@ -872,4 +902,4 @@ export const translations = {
 };
 
 export type Language = keyof typeof translations;
-export type TranslationKey = string; // Simplified for now, could be recursive keyof
+export type TranslationKey = string;
