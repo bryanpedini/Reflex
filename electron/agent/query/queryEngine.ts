@@ -198,7 +198,11 @@ export class AgentQueryEngine {
             return true;
           }
           if (text) {
-            this.store.historyPush(session, { role: 'assistant', content: text });
+            this.store.historyPush(session, {
+              role: 'assistant',
+              content: text,
+              reasoning_content: response.reasoningContent || undefined,
+            });
           }
           if (session.activeTaskRun) {
             const verifiedUrl = this.store.detectVerifiedUrl(session, text);
@@ -222,6 +226,7 @@ export class AgentQueryEngine {
         this.store.historyPush(session, {
           role: 'assistant',
           content: response.content || '',
+          reasoning_content: response.reasoningContent || undefined,
           tool_calls: response.toolCalls,
         });
         const results = await this.executeToolCalls(session, response.toolCalls);
@@ -401,7 +406,11 @@ export class AgentQueryEngine {
           };
         }
         if (text) {
-          this.store.historyPush(session, { role: 'assistant', content: text });
+          this.store.historyPush(session, {
+            role: 'assistant',
+            content: text,
+            reasoning_content: response.reasoningContent || undefined,
+          });
         }
         const verifiedUrl = this.store.detectVerifiedUrl(session, text);
         if (verifiedUrl) {
@@ -422,6 +431,7 @@ export class AgentQueryEngine {
       this.store.historyPush(session, {
         role: 'assistant',
         content: response.content || '',
+        reasoning_content: response.reasoningContent || undefined,
         tool_calls: response.toolCalls,
       });
 

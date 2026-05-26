@@ -96,7 +96,7 @@ export function makeArtifactPreview(content: string) {
   return clip(content.replace(/\s+\n/g, '\n').trim(), 1000);
 }
 
-export function summarizeThreadMessages(messages?: Array<{ role: string; content: string }>): LLMMessage[] {
+export function summarizeThreadMessages(messages?: Array<{ role: string; content: string; reasoning?: string }>): LLMMessage[] {
   if (!messages?.length) return [];
   return messages
     .slice(-12)
@@ -104,6 +104,7 @@ export function summarizeThreadMessages(messages?: Array<{ role: string; content
     .map((message) => ({
       role: message.role === 'tool' ? 'assistant' : message.role,
       content: clip(message.content, 1000),
+      reasoning_content: message.reasoning?.trim() ? clip(message.reasoning, 1000) : undefined,
     }));
 }
 

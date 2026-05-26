@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +5,8 @@
 @layer base {
   :root {
     /* Font Variables */
-    --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-sans: 'Inter Variable', sans-serif;
+    --font-mono: 'Roboto Mono Variable', monospace;
 
     /* Light Theme Base */
     --background: 0 0% 100%;
@@ -101,7 +101,7 @@
     /* Let electron handle background */
     @apply text-foreground text-body;
     /* Apply Hoppscotch 12px body size */
-    font-family: var(--font-ui, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+    font-family: var(--font-sans, 'Inter Variable', sans-serif);
   }
 
   #root {
@@ -241,5 +241,5 @@ input[type="number"] {
 
 /* Font utility */
 .font-mono-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+  font-family: var(--font-mono, 'Roboto Mono Variable', monospace);
 }

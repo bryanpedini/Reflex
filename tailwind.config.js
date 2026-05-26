@@ -76,8 +76,8 @@ module.exports = {
         'body': ['0.75rem', { lineHeight: '1rem' }], // 12px
       },
       fontFamily: {
-        sans: ['var(--font-ui)', 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+        sans: ['var(--font-sans)'],
+        mono: ['var(--font-mono)'],
       },
     },
   },

@@ -10,6 +10,7 @@ interface TranscriptEntry {
   timestamp: number;
   role?: 'user' | 'assistant' | 'tool' | 'system';
   content?: string;
+  reasoningContent?: string;
   task?: {
     id: string;
     goal: string;
@@ -103,6 +104,7 @@ export class AgentTranscriptStore {
       timestamp: Date.now(),
       role: message.role as TranscriptEntry['role'],
       content: clip(typeof message.content === 'string' ? message.content : JSON.stringify(message.content)),
+      reasoningContent: message.reasoning_content ? clip(message.reasoning_content, 4000) : undefined,
     };
     return this.appendEntry(sessionId, entry);
   }
@@ -209,6 +211,7 @@ export class AgentTranscriptStore {
         .map((entry) => ({
           role: (entry.role === 'tool' ? 'assistant' : entry.role) || 'assistant',
           content: entry.content || '',
+          reasoning_content: entry.reasoningContent || undefined,
         }));
     } catch {
       return [];

@@ -23,6 +23,7 @@ export interface LLMProfile {
 export type LLMMessage = {
     role: string;
     content: string | null;
+    reasoning_content?: string | null;
     tool_calls?: LLMToolCall[];
     tool_call_id?: string;
 };

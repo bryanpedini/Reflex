@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 import { Language } from '../shared/locales';
 import { AIProvider, AIConfig, AI_PROVIDER_CONFIGS, AIProviderProfile } from '../shared/aiTypes';
+import {
+    HOPPSCOTCH_MONO_FONT_STACK,
+    HOPPSCOTCH_UI_FONT_STACK,
+} from '../shared/fontStacks';
 import { aiService } from '../services/aiService';
 
 interface SettingsState {
@@ -89,8 +93,8 @@ function normalizeProfileModels(profile: AIProviderProfile): AIProviderProfile {
 
 export const useSettingsStore = create<SettingsState>((set, get) => ({
     language: 'en',
-    uiFontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-    terminalFontFamily: "'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace",
+    uiFontFamily: HOPPSCOTCH_UI_FONT_STACK,
+    terminalFontFamily: HOPPSCOTCH_MONO_FONT_STACK,
     fontSize: 14,
     lineHeight: 1.2,
     letterSpacing: 0,
@@ -333,11 +337,6 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
 
     initSettings: async () => {
         const savedLang = await window.electron.storeGet('language');
-        const savedUiFont = await window.electron.storeGet('uiFontFamily');
-        const savedTerminalFont = await window.electron.storeGet('terminalFontFamily');
-        // Fallback for migration: check old 'fontFamily' key if new key missing (optional, but good practice)
-        const oldFontFamily = await window.electron.storeGet('fontFamily');
-
         const savedFontSize = await window.electron.storeGet('fontSize');
         const savedLineHeight = await window.electron.storeGet('lineHeight');
         const savedLetterSpacing = await window.electron.storeGet('letterSpacing');
@@ -354,8 +353,8 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
 
         set({
             language: (savedLang as Language) || 'en',
-            uiFontFamily: (savedUiFont as string) || "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-            terminalFontFamily: (savedTerminalFont as string) || (oldFontFamily as string) || "'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace",
+            uiFontFamily: HOPPSCOTCH_UI_FONT_STACK,
+            terminalFontFamily: HOPPSCOTCH_MONO_FONT_STACK,
             fontSize: (savedFontSize as number) || 14,
             lineHeight: (savedLineHeight as number) || 1.2,
             letterSpacing: (savedLetterSpacing as number) || 0,
@@ -369,6 +368,9 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
 
             bookmarks: Array.isArray(savedBookmarks) ? savedBookmarks : [],
         });
+
+        await window.electron.storeSet('uiFontFamily', HOPPSCOTCH_UI_FONT_STACK);
+        await window.electron.storeSet('terminalFontFamily', HOPPSCOTCH_MONO_FONT_STACK);
 
         // Load AI settings
         const savedAiEnabled = await window.electron.storeGet('aiEnabled');
